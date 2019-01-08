@@ -3,7 +3,7 @@ require('dotenv').config();
 
 var connection;
 
-if (process.nextTick.JAWSDB_URL) {
+if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.JAWSDB_URL);
 }
 
