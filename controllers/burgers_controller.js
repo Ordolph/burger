@@ -24,4 +24,10 @@ router.put("/", function (req, res){
   });
 });
 
+router.delete("/", function (req, res){
+  burger.delete(req.body.id, function (result){
+    res.json({ id: result.insertId});
+  });
+});
+
 module.exports = router;
