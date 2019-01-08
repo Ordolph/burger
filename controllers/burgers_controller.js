@@ -20,7 +20,7 @@ router.post("/", function (req, res) {
 
 router.put("/", function (req, res){
   burger.update(req.body.id, function (result) {
-    res.json({ id: result.indertId});
+    res.json({ id: result.insertId});
   });
 });
 

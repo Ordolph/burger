@@ -35,10 +35,10 @@ orm = {
         });
     },
 
-    deleteOne: function(id, cb) {
+    deleteOne: function (id, cb) {
 
-        connection.query('DELETE FROM burgers WHERE id = ?', [id], function(err, res){
-            if(err) {
+        connection.query('DELETE FROM burgers WHERE id = ?', [id], function (err, res) {
+            if (err) {
                 throw err;
             };
 
