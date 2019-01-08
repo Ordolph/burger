@@ -16,7 +16,6 @@ $(function () {
         }).then(
             function () {
                 console.log("om nom");
-
                 location.reload();
             }
         );
@@ -39,11 +38,29 @@ $(function () {
         }).then(
             function () {
                 console.log("buh bye");
-
                 location.reload();
             }
         );
     });
+
+    $('#subBtn').on("click", function (event) {
+        event.preventDefault();
+
+        var burgerName = $('#newBurger').val();
+        var burgData = {
+            burger_name: burgerName
+        };
+
+        $.ajax("/", {
+            type: "POST",
+            data: burgData
+        }).then(
+            function () {
+                console.log("Yum!");
+                location.reload();
+            }
+        )
+    })
 
 });
 
