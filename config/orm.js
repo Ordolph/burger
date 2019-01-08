@@ -1,34 +1,39 @@
-require('./connection.js');
+const connection = require('./connection.js');
 
-module.exports = function (orm) {
-    function selectAll(table) {
-        connection.query('SELECT * FROM ?', [table], function (err, res) {
+orm = {
+    selectAll: function (cb) {
+        connection.query('SELECT * FROM burgers', function (err, res) {
             if (err) {
                 throw err
             };
 
-            return res;
+            cb(res);
         }
         );
-    };
+    },
 
-    function insertOne(table, col, val) {
-        connection.query('INSERT INTO ? (?) VALUES ?', [table, col, val], function (err, res) {
+    insertOne: function (val, cb) {
+        var valS = val.toString();
+
+        connection.query('INSERT INTO burgers (burger_name) VALUES (?)', [valS], function (err, res) {
             if (err) {
                 throw err
             };
 
-            return res;
+            cb(res);
         });
-    };
+    },
 
-    function updateOne(table, col, val, id) {
-        connection.query('UPDATE ? SET ? = ?, WHERE id = ?', [table, col, val, id], function (err, res) {
+    updateOne: function (id, cb) {
+
+        connection.query('UPDATE burgers SET devoured = true WHERE id = ?', [id], function (err, res) {
             if (err) {
                 throw err;
             };
 
-            return res;
+            cb(res);
         });
-    };
-}
+    }
+};
+
+module.exports = orm;
