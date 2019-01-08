@@ -22,6 +22,29 @@ $(function () {
         );
     });
 
+    $(".delete").on("click", function (event) {
+        event.preventDefault();
+
+        var idv = $(this).data("id");
+
+        var id = {
+            id: idv
+        };
+
+        console.log(id);
+
+        $.ajax("/", {
+            type: "DELETE",
+            data: id
+        }).then(
+            function () {
+                console.log("buh bye");
+
+                location.reload();
+            }
+        );
+    });
+
 });
 
 
